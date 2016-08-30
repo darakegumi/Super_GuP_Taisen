@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Title : MonoBehaviour {
     private int arrow = 1;
     private bool flag = false;
+    private bool nextScene = false;
     private string TextObjectName1 = "Press_Enter_Key";
     private string TextObjectName2 = "Start_Or_Load";
     private string arrowImageName = "ArrowImage";
@@ -28,22 +29,29 @@ public class Title : MonoBehaviour {
             text1.SetActive(!flag);
             text2.SetActive(flag);
             arrowImage.SetActive(flag);
-            flag = Input.GetKeyUp(KeyCode.Return);
+            flag = Input.GetKeyDown(KeyCode.Return);
         } else {
             //flag = true;
             text1.SetActive(!flag);
             text2.SetActive(flag);
             arrowImage.SetActive(flag);
-            flag = !Input.GetKeyUp(KeyCode.Escape);
-            if (Input.GetKeyUp(KeyCode.UpArrow)) {
+            flag = !Input.GetKeyDown(KeyCode.Escape);
+            nextScene = Input.GetKeyDown(KeyCode.Return);
+            if (Input.GetKeyDown(KeyCode.UpArrow)) {
                 arrow = 1;
-            } else if (Input.GetKeyUp(KeyCode.DownArrow)) {
+            } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
                 arrow = -1;
             }
             if (arrow == 1) {
                 arrowImage.transform.position = initialPosition + hajimekaraPosition;
+                if (nextScene) {
+                    SceneManager.LoadScene("Start");
+                }
             } else if(arrow == -1) {
                 arrowImage.transform.position = initialPosition + tudukikaraPosition;
+                if (nextScene) {
+                    SceneManager.LoadScene("Load");
+                }
             }
         }
 	}

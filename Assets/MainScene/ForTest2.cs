@@ -7,9 +7,9 @@ public class ForTest2 : MonoBehaviour {
 
     void Update() {
         print("2");
-        test = Input.GetKeyUp(KeyCode.Backspace);
+        test = Input.GetKeyUp(KeyCode.Escape);
         if (test) {
-            SceneManager.LoadScene("Test1");
+            SceneManager.LoadScene("Title");
         }
     }
 }
